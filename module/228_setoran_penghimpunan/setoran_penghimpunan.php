@@ -130,7 +130,7 @@ session_start();
                                 </td>
                                 <td>&nbsp;</td>
                                 <td>
-                                    <label>Tgl Donasi</label><br>
+                                    <label>Tgl Setoran</label><br>
                                     <div class='input-group date' id="datetimepicker1">
                                         <input type='text' class="form-control" id="tgl_setoran" size="40" />
                                         <span class="input-group-addon">
