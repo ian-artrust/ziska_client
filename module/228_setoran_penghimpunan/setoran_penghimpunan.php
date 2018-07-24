@@ -206,22 +206,33 @@ session_start();
             </div>
         </fieldset>
 	</div>
+    <br>
     <div class="container-fluid">
-        <div class="modal-body">
-            <table id="tabel_setoran" width="100%" class="table table-bordered table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>No Setoran</th>
-                        <th>Tgl Setoran</th>
-                        <th>Penyetor</th>
-                        <th>Jumlah</th>
-                        <th>Bank</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>  
+        <div class="row">
+            <div class="col-md-2">
+                <label>Batal Setoran</label><br>
+                <input type="text" name="no_batal_setoran" id="no_batal_setoran" 
+                readonly="true" class="form-control">
+                <button class="btn btn-danger" id="batal_setoran">
+                    <span class="glyphicon glyphicon-floppy-saved"></span>Batal Setoran
+                </button>
+            </div>
+            <div class="col-md-10">
+                <table id="tabel_setoran" width="100%" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>No Setoran</th>
+                            <th>Tgl Setoran</th>
+                            <th>Penyetor</th>
+                            <th>Jumlah</th>
+                            <th>Bank</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>  
+            </div>
         </div>
     </div>
 </div>

@@ -38,6 +38,22 @@ $(document).ready(function() {
         ]
     });
 
+    $('#lookup_bank tbody').on('click', 'tr', function (e) {
+		var table = $('#lookup_bank').DataTable();
+        var data = table.row( this ).data();
+        $('#no_rekening').val(data["no_rekening"]);
+        $('#nama_bank').val(data["nama_bank"]);
+        $('#kode_akun').val(data["kode_akun"]);
+        $('.close').click();
+    });
+
+    $('#tabel_setoran tbody').on('click', 'tr', function (e) {
+		var table = $('#tabel_setoran').DataTable();
+        var data = table.row( this ).data();
+        $('#no_batal_setoran').val(data["no_setoran"]);
+        $('.close').click();
+    });
+
     var moneyFormat = wNumb({
          mark: ',',
          decimals: 0,
@@ -48,19 +64,6 @@ $(document).ready(function() {
 
     $('#jml_setoran').on('input', function() {
         $('#format_mata_uang').html(moneyFormat.to(parseInt($(this).val())));
-    });
-
-    $('#jml_setoran').change(function() {
-
-    });
-
-    $('#lookup_bank tbody').on('click', 'tr', function (e) {
-		var table = $('#lookup_bank').DataTable();
-        var data = table.row( this ).data();
-        $('#no_rekening').val(data["no_rekening"]);
-        $('#nama_bank').val(data["nama_bank"]);
-        $('#kode_akun').val(data["kode_akun"]);
-        $('.close').click();
     });
 
     function cetak(){
@@ -101,6 +104,26 @@ $(document).ready(function() {
 		});
     }
 
+    function batalSetoran(){
+        var no_setoran = $('#no_batal_setoran').val();
+
+		$.ajax({
+			url:  urlAPI+"/app/module/setoran_penghimpunan/batal_setoran.php",
+			type: 'POST',
+			dataType: 'json',
+			data: {
+                no_setoran:no_setoran
+			},
+			success : function(data){
+                alert(data.pesan);
+                $('.konten').load('228_setoran_penghimpunan/setoran_penghimpunan.php');
+			}, 
+			error: function(data){
+				alert(data.pesan);
+			}
+		});
+    }
+
     function clear() {
         $("#no_setoran").val("");
         $("#penyetor").val("");
@@ -115,6 +138,10 @@ $(document).ready(function() {
 
     $('#cetak').click(function(){
         cetak();
+    });
+
+    $('#batal_setoran').click(function(){
+        batalSetoran();
     });
 
 });
