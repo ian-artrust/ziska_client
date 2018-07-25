@@ -51,6 +51,7 @@ session_start();
     <script src="../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
     <script src="../bower_components/bootstrap-select/js/bootstrap-select.js" type="text/javascript"></script>
     <script src="../bower_components/wnumb/wNumb.js" type="text/javascript"></script>
+	<script src="../bower_components/jquery-maskmoney/dist/jquery.maskMoney.min.js" type="text/javascript"></script>
 
     <!-- Data Tables CSS -->
     <link rel="stylesheet" type="text/css" href="../bower_components/datatables.net-dt/css/jquery.dataTables.min.css">
@@ -209,6 +210,8 @@ session_start();
 								<td>
 									<input type="text" class="form-control" 
 									name="jml_transaksi" id="jml_transaksi"
+									data-affixes-stay="true" data-thousands="."
+                            		data-precision="0" data-decimal=","
 									required placeholder="Jumlah Transaksi..." >
 								</td>
 								<td>
@@ -319,7 +322,10 @@ session_start();
 					</div>
 					<div class="col-md-2">
 						<label>Jumlah Debit</label>
-						<input type="text" id="jml_debit" name="jml_debit" class="form-control">
+						<input type="text" id="jml_debit" name="jml_debit" 
+						data-affixes-stay="true" data-thousands="."
+						data-precision="0" data-decimal=","
+						class="form-control">
 					</div>
                 </div>
 				<div class="row">
@@ -365,8 +371,9 @@ session_start();
 									<th>No Setoran</th>
 									<th>Tgl Setoran</th>
 									<th>Penyetor</th>
+									<th>Jenis</th>
 									<th>Jumlah</th>
-									<th>Bank</th>
+									<th>Kantor</th>
 									<th>Status</th>
 								</tr>
 							</thead>

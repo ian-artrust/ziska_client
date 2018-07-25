@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var table;
 	var server = $('#server').val();
 	var urlAPI = server+"ziska_api";
+	$('#jml_debit').maskMoney();
 	
 	var urlGetCombo = urlAPI+'/app/lib/combo_periode.php';
 	$(function () {
@@ -26,10 +27,19 @@ $(document).ready(function() {
 				{"data": "no_setoran" },
 				{"data": "tgl_setoran" },
 				{"data": "penyetor" },
+				{"data": "jenis" },
 				{"data": "jml_setoran" },
-				{"data": "nama_bank" },
+				{"data": "nama_kantor" },
 				{"data": "status" },
 			]
+		});
+
+		$('#tabel_setoran tbody').on('click', 'tr', function (e) {
+			var table = $('#tabel_setoran').DataTable();
+			var data = table.row( this ).data();
+			$('#no_setoran').val(data["no_setoran"]);
+			$('#nama_kantor').val(data["nama_kantor"]);
+			$('.close').click();
 		});
 	
 		$('#lookup_bank').DataTable( {
@@ -163,11 +173,20 @@ $(document).ready(function() {
     $('#reset').click(function(){
     	resetForm();
 		$('.konten').load('323_trsbank/trsbank.php');
+	});
+	
+	$('#reset_batal').click(function(){
+		$('.konten').load('323_trsbank/trsbank.php');
     });
 
     /* SAVE */
     $('#save').click(function(){
 		saveTransaksi();
+		$('.konten').load('323_trsbank/trsbank.php');
+	});
+
+	$('#validasi').click(function(){
+		validasi();
 		$('.konten').load('323_trsbank/trsbank.php');
 	});
 
@@ -240,6 +259,41 @@ $(document).ready(function() {
 				'keterangan':keterangan,
 				'kode_akun_counter':kode_akun_counter,
 				'akun_counter':akun_counter
+			},
+			success : function(data){
+				alert(data.pesan);
+			}, 
+			error: function(data){
+				alert(data.pesan);
+			}
+		});
+	}
+
+	function validasi() {
+		var no_setoran = $('#no_setoran').val();
+		var kode_akun_debit = $('#kode_akun_debit').val();
+		var kode_akun_kredit = $('#kode_akun_kredit').val();
+		var no_rekening_validasi = $('#no_rekening_validasi').val();
+		var nama_bank_validasi = $('#nama_bank_validasi').val();
+		var jml_debit = $('#jml_debit').val();
+		var periode_validasi = $('#periode_validasi').val();
+		var tgl_validasi = $('#tgl_validasi').val();
+        var nama_kantor = $('#nama_kantor').val();
+		$.ajax({
+			url:  urlAPI+"/app/module/trsbank/validasi_setoran.php",
+			type: 'POST',
+			dataType: 'json',
+			data: {
+                'aksi':'save',
+                'no_setoran':no_setoran,
+				'kode_akun_debit':kode_akun_debit,
+				'kode_akun_kredit':kode_akun_kredit,
+				'no_rekening_validasi':no_rekening_validasi,
+				'nama_bank_validasi':nama_bank_validasi,
+				'jml_debit':jml_debit,
+				'periode_validasi':periode_validasi,
+				'tgl_validasi':tgl_validasi,
+				'nama_kantor':nama_kantor
 			},
 			success : function(data){
 				alert(data.pesan);
