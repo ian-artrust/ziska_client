@@ -49,6 +49,8 @@ $(document).ready(function() {
 			{"data": "nama_master" },
 			{"data": "tgl_pengajuan" },
 			{"data": "jml_pengajuan" },
+			{"data": "tgl_survey" },
+			{"data": "tgl_realisasi" },
 			{"data": "status" },
 		]
     });
@@ -73,6 +75,8 @@ $(document).ready(function() {
 			{"data": "nama_master" },
 			{"data": "tgl_pengajuan" },
 			{"data": "jml_pengajuan" },
+			{"data": "tgl_survey" },
+			{"data": "tgl_realisasi" },
 			{"data": "status" },
 		]
     });

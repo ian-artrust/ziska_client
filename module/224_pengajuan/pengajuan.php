@@ -314,6 +314,8 @@ session_start();
                                 <th>Pengajuan</th>
                                 <th>Tgl Pengajuan</th>
                                 <th>Jml Pengajuan</th>
+                                <th>Tgl Survey</th>
+                                <th>Tgl Realisasi</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -330,6 +332,8 @@ session_start();
                                 <th>Pengajuan</th>
                                 <th>Tgl Pengajuan</th>
                                 <th>Jml Pengajuan</th>
+                                <th>Tgl Survey</th>
+                                <th>Tgl Realisasi</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
